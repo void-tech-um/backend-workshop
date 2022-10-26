@@ -1,4 +1,4 @@
-import * as model from "../model/item";
+import * as model from "../../model/item";
 
 export const getItemsController = async (req: any, res: any) => {
   const items = await model.getItems();
