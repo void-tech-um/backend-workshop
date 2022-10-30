@@ -11,9 +11,9 @@ itemsRouter.get("/", authenticateToken, controller.getItemsController);
 itemsRouter.post("/", authenticateToken, controller.createItemController);
 
 /** @route POST /api/items/<id> */
-itemsRouter.put("/:id", controller.updateItemController);
+itemsRouter.put("/:id", authenticateToken, controller.updateItemController);
 
 /** @route DELETE /api/items/<id> */
-itemsRouter.delete("/:id", controller.deleteItemController);
+itemsRouter.delete("/:id", authenticateToken, controller.deleteItemController);
 
 export default itemsRouter;
