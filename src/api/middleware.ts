@@ -1,7 +1,18 @@
 import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
 
-export const hashPassword = async (req: any, res: any, next: any) => {
+/**
+ * @desc Hash a password
+ * @param req Request
+ * @param res Response
+ * @param next Next
+ * @returns {Promise<void>}
+ */
+export const hashPassword = async (
+  req: any,
+  res: any,
+  next: any
+): Promise<void> => {
   const salt = await bcrypt.genSalt(10);
   const hashedPassword = await bcrypt.hash(req.body.password, salt);
   console.log(hashedPassword);
@@ -9,6 +20,12 @@ export const hashPassword = async (req: any, res: any, next: any) => {
   next();
 };
 
+/**
+ * @desc Authenticate a JWT token
+ * @param req Request
+ * @param res Response
+ * @param next Next
+ */
 export const authenticateToken = (req: any, res: any, next: any) => {
   const authHeader = req.headers["authorization"];
   const token = authHeader && authHeader.split(" ")[1];

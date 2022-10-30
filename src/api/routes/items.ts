@@ -4,9 +4,16 @@ import { authenticateToken } from "../middleware";
 
 const itemsRouter = express.Router();
 
+/** @route GET /api/items */
 itemsRouter.get("/", authenticateToken, controller.getItemsController);
+
+/** @route POST /api/items */
 itemsRouter.post("/", authenticateToken, controller.createItemController);
+
+/** @route POST /api/items/<id> */
 itemsRouter.put("/:id", controller.updateItemController);
+
+/** @route DELETE /api/items/<id> */
 itemsRouter.delete("/:id", controller.deleteItemController);
 
 export default itemsRouter;

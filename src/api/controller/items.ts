@@ -3,7 +3,6 @@ import * as model from "../../model/item";
 /**
  * @route GET /api/items
  * @desc Get all items
- * @access Public
  * @param req Request
  * @param res Response
  * @returns {Promise<void>}
@@ -19,7 +18,6 @@ export const getItemsController = async (req: any, res: any): Promise<void> => {
 /**
  * @route POST /api/items/<id>
  * @desc Update an item
- * @access Public
  * @param req Request
  * @param res Response
  * @returns {Promise<void>}
@@ -40,7 +38,6 @@ export const updateItemController = async (
 /**
  * @route POST /api/items
  * @desc Create a new item
- * @access Public
  * @param req Request
  * @param res Response
  * @returns {Promise<void>}
@@ -57,7 +54,6 @@ export const createItemController = async (req: any, res: any) => {
 /**
  * @route DELETE /api/items/<id>
  * @desc Delete an item
- * @access Public
  * @param req Request
  * @param res Response
  * @returns {Promise<void>}

@@ -11,7 +11,7 @@ interface IUser {
   updatedAt?: Date;
 }
 
-// Initialize User model
+/** @desc Initialize User model */
 class User extends Model<IUser> {}
 
 User.init(
@@ -49,6 +49,11 @@ User.init(
   }
 );
 
+/**
+ * @desc Create a new user
+ * @param user User object
+ * @returns Created user
+ */
 export const createUser = async (user: IUser) => {
   // Check if user already exists
   const userExists = await User.findOne({
@@ -64,6 +69,13 @@ export const createUser = async (user: IUser) => {
   return newUser;
 };
 
+/**
+ * @desc Login a user
+ * @param user User object
+ * @returns Logged in user's username
+ * @returns false if user does not exist
+ * @returns false if password is incorrect
+ */
 export const login = async (user: IUser) => {
   // Check if user exists
   const userExists = await User.findOne({

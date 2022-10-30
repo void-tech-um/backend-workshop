@@ -4,6 +4,7 @@ import itemsRouter from "./routes/items";
 
 const router = express.Router();
 
+/** @route GET /api */
 router.get("/", (req, res) => {
   res.send({
     items: "/api/items",
