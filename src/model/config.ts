@@ -8,12 +8,12 @@ const user = process.env.DB_USER;
 const password = process.env.DB_PASSWORD;
 const host = process.env.DB_HOST;
 
-// Connect to POSTGRES database
+/** @desc Create a new Sequelize instance */
 const sequelize = new Sequelize(
   `postgres://${user}:${password}@${host}:5432/${dbName}`
 );
 
-// Check connection
+/** @desc Test connection to database */
 sequelize
   .authenticate()
   .then(() => {

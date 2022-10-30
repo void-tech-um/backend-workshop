@@ -52,9 +52,9 @@ User.init(
 /**
  * @desc Create a new user
  * @param user User object
- * @returns Created user
+ * @returns {Promise<User | boolean>} Created user or false if user already exists
  */
-export const createUser = async (user: IUser) => {
+export const createUser = async (user: IUser): Promise<User | boolean> => {
   // Check if user already exists
   const userExists = await User.findOne({
     where: {
@@ -72,11 +72,9 @@ export const createUser = async (user: IUser) => {
 /**
  * @desc Login a user
  * @param user User object
- * @returns Logged in user's username
- * @returns false if user does not exist
- * @returns false if password is incorrect
+ * @returns {Promise<string | boolean>} Username or false if user does not exist or password is incorrect
  */
-export const login = async (user: IUser) => {
+export const login = async (user: IUser): Promise<string | boolean> => {
   // Check if user exists
   const userExists = await User.findOne({
     where: {

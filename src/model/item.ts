@@ -50,9 +50,12 @@ export const getItems = async () => {
  * @desc Update an item
  * @param id Item id
  * @param item Item object
- * @returns Updated item
+ * @returns {Promise<[affectedCount: number]>} Updated item
  */
-export const updateItem = async (id: number, item: IItem) => {
+export const updateItem = async (
+  id: number,
+  item: IItem
+): Promise<[affectedCount: number]> => {
   const updatedItem = await Item.update(item, {
     where: { id },
   });
@@ -62,9 +65,9 @@ export const updateItem = async (id: number, item: IItem) => {
 /**
  * @desc Create a new item
  * @param item IItem
- * @returns Item
+ * @returns {Promise<Item>} Created item
  */
-export const createItem = async (item: IItem) => {
+export const createItem = async (item: IItem): Promise<Item> => {
   const newItem = await Item.create(item);
   return newItem;
 };
@@ -72,9 +75,9 @@ export const createItem = async (item: IItem) => {
 /**
  * @desc Delete an item
  * @param id Item id'
- * @returns Item
+ * @returns {Promise<number>} Deleted item
  */
-export const deleteItem = async (id: number) => {
+export const deleteItem = async (id: number): Promise<number> => {
   const deletedItem = await Item.destroy({
     where: { id },
   });

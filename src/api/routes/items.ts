@@ -10,7 +10,7 @@ itemsRouter.get("/", authenticateToken, controller.getItemsController);
 /** @route POST /api/items */
 itemsRouter.post("/", authenticateToken, controller.createItemController);
 
-/** @route POST /api/items/<id> */
+/** @route PUT /api/items/<id> */
 itemsRouter.put("/:id", authenticateToken, controller.updateItemController);
 
 /** @route DELETE /api/items/<id> */
