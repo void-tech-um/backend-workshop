@@ -1,5 +1,6 @@
 import { Model, DataTypes } from "sequelize";
 import sequelize from "./config";
+import bcrypt from "bcrypt";
 
 interface IUser {
   id?: number;
@@ -61,4 +62,26 @@ export const createUser = async (user: IUser) => {
   // Create user
   const newUser = await User.create(user);
   return newUser;
+};
+
+export const login = async (user: IUser) => {
+  // Check if user exists
+  const userExists = await User.findOne({
+    where: {
+      username: user.username,
+    },
+  });
+  if (!userExists) {
+    return false;
+  }
+  // Check if password is correct
+  const passwordCorrect = await bcrypt.compare(
+    user.password,
+    userExists.getDataValue("password")
+  );
+  if (!passwordCorrect) {
+    return false;
+  }
+  // Return user
+  return userExists.getDataValue("username");
 };

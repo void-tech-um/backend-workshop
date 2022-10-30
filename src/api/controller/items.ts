@@ -1,6 +1,14 @@
 import * as model from "../../model/item";
 
-export const getItemsController = async (req: any, res: any) => {
+/**
+ * @route GET /api/items
+ * @desc Get all items
+ * @access Public
+ * @param req Request
+ * @param res Response
+ * @returns {Promise<void>}
+ */
+export const getItemsController = async (req: any, res: any): Promise<void> => {
   const items = await model.getItems();
   res.send({
     items: items,
@@ -8,7 +16,18 @@ export const getItemsController = async (req: any, res: any) => {
   });
 };
 
-export const updateItemController = async (req: any, res: any) => {
+/**
+ * @route POST /api/items/<id>
+ * @desc Update an item
+ * @access Public
+ * @param req Request
+ * @param res Response
+ * @returns {Promise<void>}
+ */
+export const updateItemController = async (
+  req: any,
+  res: any
+): Promise<void> => {
   const id = req.params.id;
   const item = req.body;
   const updatedItem = await model.updateItem(id, item);
@@ -18,6 +37,14 @@ export const updateItemController = async (req: any, res: any) => {
   });
 };
 
+/**
+ * @route POST /api/items
+ * @desc Create a new item
+ * @access Public
+ * @param req Request
+ * @param res Response
+ * @returns {Promise<void>}
+ */
 export const createItemController = async (req: any, res: any) => {
   const item = req.body;
   const createdItem = await model.createItem(item);
@@ -27,7 +54,18 @@ export const createItemController = async (req: any, res: any) => {
   });
 };
 
-export const deleteItemController = async (req: any, res: any) => {
+/**
+ * @route DELETE /api/items/<id>
+ * @desc Delete an item
+ * @access Public
+ * @param req Request
+ * @param res Response
+ * @returns {Promise<void>}
+ */
+export const deleteItemController = async (
+  req: any,
+  res: any
+): Promise<void> => {
   const id = req.params.id;
   const deletedItem = await model.deleteItem(id);
   res.send({
