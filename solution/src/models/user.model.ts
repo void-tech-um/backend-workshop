@@ -1,18 +1,22 @@
-import { Model, DataTypes } from "sequelize";
-import sequelize from "./config";
+import {
+  Model,
+  DataTypes,
+  InferAttributes,
+  InferCreationAttributes,
+  CreationOptional,
+} from "sequelize";
+import sequelize from ".";
 import bcrypt from "bcrypt";
 
-interface IUser {
-  id?: number;
-  username: string;
-  password: string;
-  email: string;
-  createdAt?: Date;
-  updatedAt?: Date;
-}
-
 /** @desc Initialize User model */
-class User extends Model<IUser> {}
+class User extends Model<InferAttributes<User>, InferCreationAttributes<User>> {
+  declare id: CreationOptional<number>;
+  declare username: string;
+  declare email: string;
+  declare password: string;
+  declare createdAt: CreationOptional<Date>;
+  declare updatedAt: CreationOptional<Date>;
+}
 
 User.init(
   {
@@ -51,10 +55,10 @@ User.init(
 
 /**
  * @desc Create a new user
- * @param user User object
+ * @param {User} user
  * @returns {Promise<User | boolean>} Created user or false if user already exists
  */
-export const createUser = async (user: IUser): Promise<User | boolean> => {
+export const createUser = async (user: User): Promise<User | boolean> => {
   // Check if user already exists
   const userExists = await User.findOne({
     where: {
@@ -71,10 +75,10 @@ export const createUser = async (user: IUser): Promise<User | boolean> => {
 
 /**
  * @desc Login a user
- * @param user User object
+ * @param {User} user object
  * @returns {Promise<string | boolean>} Username or false if user does not exist or password is incorrect
  */
-export const login = async (user: IUser): Promise<string | boolean> => {
+export const login = async (user: User): Promise<string | boolean> => {
   // Check if user exists
   const userExists = await User.findOne({
     where: {
@@ -87,11 +91,11 @@ export const login = async (user: IUser): Promise<string | boolean> => {
   // Check if password is correct
   const passwordCorrect = await bcrypt.compare(
     user.password,
-    userExists.getDataValue("password")
+    userExists.password
   );
   if (!passwordCorrect) {
     return false;
   }
   // Return user
-  return userExists.getDataValue("username");
+  return userExists.username;
 };

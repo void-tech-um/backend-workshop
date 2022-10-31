@@ -1,15 +1,19 @@
-import { Model, DataTypes } from "sequelize";
-import sequelize from "./config";
-
-interface IItem {
-  id?: number;
-  name: string;
-  price: number;
-  calories: number;
-}
+import {
+  Model,
+  DataTypes,
+  InferAttributes,
+  InferCreationAttributes,
+  CreationOptional,
+} from "sequelize";
+import sequelize from ".";
 
 /** @desc Initialize Item model */
-class Item extends Model<IItem> {}
+class Item extends Model<InferAttributes<Item>, InferCreationAttributes<Item>> {
+  declare id: CreationOptional<number>;
+  declare name: string;
+  declare price: number;
+  declare calories: number;
+}
 
 Item.init(
   {
@@ -40,21 +44,24 @@ Item.init(
   }
 );
 
-/** @desc Get all items */
-export const getItems = async () => {
+/**
+ * @desc Get all items
+ * @returns {Promise<Item[]>} All items
+ */
+export const getItems = async (): Promise<Item[]> => {
   const items = await Item.findAll();
   return items;
 };
 
 /**
  * @desc Update an item
- * @param id Item id
- * @param item Item object
+ * @param {number} id
+ * @param {Item} item
  * @returns {Promise<[affectedCount: number]>} Updated item
  */
 export const updateItem = async (
   id: number,
-  item: IItem
+  item: Item
 ): Promise<[affectedCount: number]> => {
   const updatedItem = await Item.update(item, {
     where: { id },
@@ -64,17 +71,17 @@ export const updateItem = async (
 
 /**
  * @desc Create a new item
- * @param item IItem
+ * @param {Item} item
  * @returns {Promise<Item>} Created item
  */
-export const createItem = async (item: IItem): Promise<Item> => {
+export const createItem = async (item: Item): Promise<Item> => {
   const newItem = await Item.create(item);
   return newItem;
 };
 
 /**
  * @desc Delete an item
- * @param id Item id'
+ * @param {number} id
  * @returns {Promise<number>} Deleted item
  */
 export const deleteItem = async (id: number): Promise<number> => {

@@ -1,4 +1,4 @@
-import * as model from "../../model/user";
+import * as model from "../../models/user.model";
 import jwt from "jsonwebtoken";
 import dotenv from "dotenv";
 
@@ -40,7 +40,6 @@ export const loginController = async (req: any, res: any): Promise<void> => {
 
   if (!loggedInUser) return res.sendStatus(401);
 
-  console.log(loggedInUser);
   const token = generateAccessToken(loggedInUser);
   res.send({
     loggedInUser: loggedInUser,

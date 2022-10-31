@@ -1,4 +1,4 @@
-import * as model from "../../model/item";
+import * as model from "../../models/item.model";
 
 /**
  * @route GET /api/items
@@ -42,7 +42,10 @@ export const updateItemController = async (
  * @param res Response
  * @returns {Promise<void>}
  */
-export const createItemController = async (req: any, res: any) => {
+export const createItemController = async (
+  req: any,
+  res: any
+): Promise<void> => {
   const item = req.body;
   const createdItem = await model.createItem(item);
   res.send({
