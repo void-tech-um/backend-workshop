@@ -38,8 +38,8 @@ export const updateItemController = async (
 /**
  * @route POST /api/items
  * @desc Create a new item
- * @param req Request
- * @param res Response
+ * @param {any} req
+ * @param {any} res
  * @returns {Promise<void>}
  */
 export const createItemController = async (
@@ -57,8 +57,8 @@ export const createItemController = async (
 /**
  * @route DELETE /api/items/<id>
  * @desc Delete an item
- * @param req Request
- * @param res Response
+ * @param {any} req
+ * @param {any} res
  * @returns {Promise<void>}
  */
 export const deleteItemController = async (

@@ -6,7 +6,6 @@ import {
   CreationOptional,
 } from "sequelize";
 import sequelize from ".";
-import bcrypt from "bcrypt";
 
 /** @desc Initialize User model */
 class User extends Model<InferAttributes<User>, InferCreationAttributes<User>> {
@@ -74,28 +73,16 @@ export const createUser = async (user: User): Promise<User | boolean> => {
 };
 
 /**
- * @desc Login a user
+ * @desc Check if user exists and return user
  * @param {User} user object
- * @returns {Promise<string | boolean>} Username or false if user does not exist or password is incorrect
+ * @returns {Promise<User | null>} Username or false if user does not exist or password is incorrect
  */
-export const login = async (user: User): Promise<string | boolean> => {
+export const loginUser = async (user: User): Promise<User | null> => {
   // Check if user exists
   const userExists = await User.findOne({
     where: {
       username: user.username,
     },
   });
-  if (!userExists) {
-    return false;
-  }
-  // Check if password is correct
-  const passwordCorrect = await bcrypt.compare(
-    user.password,
-    userExists.password
-  );
-  if (!passwordCorrect) {
-    return false;
-  }
-  // Return user
-  return userExists.username;
+  return userExists;
 };
