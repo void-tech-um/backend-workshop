@@ -13,8 +13,11 @@ coverage
 assets
 
 # production
-/build
-/dist
+build
+dist
+
+# parcel
+.parcel-cache
 
 # misc
 .DS_Store

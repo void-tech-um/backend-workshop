@@ -2,12 +2,13 @@ import express from "express";
 import router from "./api";
 import dotenv from "dotenv";
 import cors from "cors";
+import path from "path";
 
 // Load environment variables
 dotenv.config();
 
 // Set our port
-const PORT = process.env.PORT;
+const PORT = process.env.EXPRESS_PORT;
 
 // Create Express server
 const app = express();
