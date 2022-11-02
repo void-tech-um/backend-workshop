@@ -7,13 +7,22 @@ export default class Api implements IApi {
     this.base_url = "http://localhost:3001/api";
   }
 
-  async login(username: string, password: string) {
+  login = async (username: string, password: string) => {
     const response = await axios.post(`${this.base_url}/auth/login`, {
       username,
       password,
     });
     return response.data;
-  }
+  };
+
+  signup = async (username: string, email: string, password: string) => {
+    const response = await axios.post(
+      `${this.base_url}/auth/signup`,
+
+      { username, email, password }
+    );
+    return response.data;
+  };
 
   getItems = async (token: string) => {
     try {

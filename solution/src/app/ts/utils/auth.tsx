@@ -41,13 +41,29 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
   const login = async (
     username: string,
     password: string,
-    callback: VoidFunction
+    redirect: VoidFunction
   ) => {
     try {
       const data = await api.login(username, password);
       setUser(data.loggedInUser.username);
       localStorage.setItem("token", data.token);
-      callback();
+      redirect();
+    } catch (e) {
+      alert(e);
+    }
+  };
+
+  const signup = async (
+    username: string,
+    email: string,
+    password: string,
+    redirect: VoidFunction
+  ) => {
+    try {
+      const data = await api.signup(username, email, password);
+      setUser(data.createdUser.username);
+      localStorage.setItem("token", data.token);
+      redirect();
     } catch (e) {
       alert(e);
     }
@@ -62,6 +78,7 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
     <AuthContext.Provider
       value={{
         user,
+        signup,
         login,
         logout,
       }}

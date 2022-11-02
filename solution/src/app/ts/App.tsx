@@ -1,5 +1,6 @@
 import React from "react";
 import Login from "./components/Login";
+import Register from "./components/Register";
 import Market from "./components/Market";
 import { Routes, Route } from "react-router-dom";
 import { AuthProvider, RequireAuth } from "./utils/auth";
@@ -24,6 +25,7 @@ function App() {
     <AuthProvider>
       <Routes>
         <Route path="/login" element={<Login />} />
+        <Route path="/signup" element={<Register />} />
         <Route path="/" element={<RequireAuth>{<Market />}</RequireAuth>} />
         <Route path="*" element={<NotFound />} />
       </Routes>

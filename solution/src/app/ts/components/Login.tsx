@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import { Link, redirect } from "react-router-dom";
 import { useLocation, useNavigate } from "react-router-dom";
 import { useAuth, checkAuth } from "../utils/auth";
 
@@ -59,6 +60,9 @@ const Login = () => {
       <button type="submit" className="btn btn-primary">
         Sign in
       </button>
+      <Link to="/signup" className="btn btn-link">
+        Sign up
+      </Link>
     </form>
   );
 };
