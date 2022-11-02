@@ -1,9 +1,9 @@
 import React from "react";
-import Login from "./components/Login";
-import Register from "./components/Register";
-import Market from "./components/Market";
+import Login from "./Login";
+import Register from "./Register";
+import Market from "./Market";
 import { Routes, Route } from "react-router-dom";
-import { AuthProvider, RequireAuth } from "./utils/auth";
+import { AuthProvider, RequireAuth, AuthRedirect } from "../utils/auth";
 import "bootstrap/dist/css/bootstrap.min.css";
 
 const NotFound = () => (
@@ -24,8 +24,14 @@ function App() {
   return (
     <AuthProvider>
       <Routes>
-        <Route path="/login" element={<Login />} />
-        <Route path="/signup" element={<Register />} />
+        <Route
+          path="/login"
+          element={<AuthRedirect>{<Login />}</AuthRedirect>}
+        />
+        <Route
+          path="/signup"
+          element={<AuthRedirect>{<Register />}</AuthRedirect>}
+        />
         <Route path="/" element={<RequireAuth>{<Market />}</RequireAuth>} />
         <Route path="*" element={<NotFound />} />
       </Routes>

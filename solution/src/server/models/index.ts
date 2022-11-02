@@ -10,7 +10,7 @@ const host = process.env.DB_HOST;
 
 /** @desc Create a new Sequelize instance */
 const sequelize = new Sequelize(
-  "postgres://postgres:postgrespw@localhost:49155"
+  "postgres://postgres:postgrespw@localhost:49153"
 );
 
 /** @desc Test connection to database */

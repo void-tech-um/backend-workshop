@@ -98,3 +98,13 @@ export const RequireAuth = ({ children }: { children: JSX.Element }) => {
 
   return children;
 };
+
+export const AuthRedirect = ({ children }: { children: JSX.Element }) => {
+  const auth = useAuth();
+
+  if (checkAuth() && auth.user) {
+    return <Navigate to="/" />;
+  }
+
+  return children;
+};

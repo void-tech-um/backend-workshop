@@ -1,7 +1,7 @@
-import React, { useEffect, useState } from "react";
-import { Link, redirect } from "react-router-dom";
+import React, { useState } from "react";
+import { Link } from "react-router-dom";
 import { useLocation, useNavigate } from "react-router-dom";
-import { useAuth, checkAuth } from "../utils/auth";
+import { useAuth } from "../utils/auth";
 
 const Login = () => {
   const [username, setUsername] = useState("");
@@ -10,12 +10,6 @@ const Login = () => {
   const navigate = useNavigate();
   const auth = useAuth();
   const from = location.state?.from?.pathname || "/";
-
-  useEffect(() => {
-    if (checkAuth()) {
-      navigate(from, { replace: true });
-    }
-  }, []);
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
