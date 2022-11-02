@@ -8,7 +8,7 @@ const api = new Api();
 const AuthContext = React.createContext<IAuthContext>(null!);
 export const useAuth = () => React.useContext(AuthContext);
 
-export const checkAuth = () => {
+const checkAuth = () => {
   const token = localStorage.getItem("token");
 
   if (!token) {
