@@ -8,7 +8,10 @@ import {
 import sequelize from ".";
 
 /** @desc Initialize User model */
-class User extends Model<InferAttributes<User>, InferCreationAttributes<User>> {
+export default class User extends Model<
+  InferAttributes<User>,
+  InferCreationAttributes<User>
+> {
   declare id: CreationOptional<number>;
   declare username: string;
   declare email: string;

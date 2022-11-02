@@ -1,6 +1,6 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
-import { useAuth } from "../utils/auth";
+import { useAuth, checkAuth } from "../utils/auth";
 
 const Login = () => {
   const [username, setUsername] = useState("");
@@ -10,11 +10,16 @@ const Login = () => {
   const auth = useAuth();
   const from = location.state?.from?.pathname || "/";
 
+  useEffect(() => {
+    if (checkAuth()) {
+      navigate(from, { replace: true });
+    }
+  }, []);
+
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     try {
       auth.login(username, password, () => {
-        console.log("Logged in");
         navigate(from, { replace: true });
       });
     } catch (err) {
@@ -23,7 +28,11 @@ const Login = () => {
   };
 
   return (
-    <form onSubmit={handleSubmit} className="login-form">
+    <form
+      style={{ width: "30%" }}
+      onSubmit={handleSubmit}
+      className="login-form mx-auto mt-5"
+    >
       <div className="form-outline mb-4">
         <label className="form-label" htmlFor="username">
           Username
@@ -47,7 +56,7 @@ const Login = () => {
           onChange={(e) => setPassword(e.target.value)}
         />
       </div>
-      <button type="submit" className="btn btn-primary btn-block mb-4">
+      <button type="submit" className="btn btn-primary">
         Sign in
       </button>
     </form>

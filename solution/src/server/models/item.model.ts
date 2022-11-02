@@ -8,7 +8,10 @@ import {
 import sequelize from ".";
 
 /** @desc Initialize Item model */
-class Item extends Model<InferAttributes<Item>, InferCreationAttributes<Item>> {
+export default class Item extends Model<
+  InferAttributes<Item>,
+  InferCreationAttributes<Item>
+> {
   declare id: CreationOptional<number>;
   declare name: string;
   declare price: number;

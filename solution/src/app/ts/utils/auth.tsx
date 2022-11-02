@@ -8,15 +8,15 @@ const api = new Api();
 const AuthContext = React.createContext<IAuthContext>(null!);
 export const useAuth = () => React.useContext(AuthContext);
 
-const checkAuth = () => {
-  const auth = useAuth();
+export const checkAuth = () => {
+  const token = localStorage.getItem("token");
 
-  if (!auth.token) {
+  if (!token) {
     return false;
   }
 
   try {
-    const { exp } = decode(auth.token) as { exp: number };
+    const { exp } = decode(token) as { exp: number };
     if (exp < new Date().getTime() / 1000) {
       return false;
     }
@@ -29,7 +29,14 @@ const checkAuth = () => {
 
 export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
   const [user, setUser] = React.useState<string | null>(null);
-  const [token, setToken] = React.useState<string | null>(null);
+
+  React.useEffect(() => {
+    const token = localStorage.getItem("token");
+    if (token) {
+      const { user }: any = decode(token);
+      setUser(user.username);
+    }
+  }, []);
 
   const login = async (
     username: string,
@@ -38,7 +45,6 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
   ) => {
     try {
       const data = await api.login(username, password);
-      setToken(data.token);
       setUser(data.loggedInUser.username);
       localStorage.setItem("token", data.token);
       callback();
@@ -48,7 +54,6 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
   };
 
   const logout = () => {
-    setToken(null);
     setUser(null);
     localStorage.removeItem("token");
   };
@@ -57,7 +62,6 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
     <AuthContext.Provider
       value={{
         user,
-        token,
         login,
         logout,
       }}
@@ -68,10 +72,10 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
 };
 
 export const RequireAuth = ({ children }: { children: JSX.Element }) => {
-  const { user, token } = useAuth();
   const location = useLocation();
+  const auth = useAuth();
 
-  if (!user || !token || !checkAuth()) {
+  if (!checkAuth() || !auth.user) {
     return <Navigate to="/login" state={{ from: location }} />;
   }
 

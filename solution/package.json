@@ -6,7 +6,9 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "build": "tsc",
-    "start": "nodemon --exec ts-node src/server/index.ts"
+    "server": "nodemon --exec ts-node src/server/index.ts",
+    "client": "parcel src/app/index.html",
+    "start": "concurrently \"npm run server\" \"npm run client\""
   },
   "keywords": [],
   "author": "",

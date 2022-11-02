@@ -16,7 +16,6 @@ export interface IApi {
 
 export interface IAuthContext {
   user: string | null;
-  token: string | null;
   login: (username: string, password: string, callback: VoidFunction) => void;
   logout: () => void;
 }

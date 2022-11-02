@@ -4,7 +4,7 @@ import { IApi, Item } from "../utils/types";
 export default class Api implements IApi {
   base_url: string;
   constructor() {
-    this.base_url = "http://localhost:8000/api";
+    this.base_url = "http://localhost:3001/api";
   }
 
   async login(username: string, password: string) {
