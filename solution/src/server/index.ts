@@ -8,7 +8,7 @@ import path from "path";
 dotenv.config();
 
 // Set our port
-const PORT = process.env.EXPRESS_PORT;
+const PORT = process.env.SERVER_PORT;
 
 // Create Express server
 const app = express();
