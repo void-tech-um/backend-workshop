@@ -37,6 +37,22 @@ export default class Api implements IApi {
     }
   };
 
+  getUserItems = async (token: string, username: string) => {
+    try {
+      const response = await axios.get(`${this.base_url}/items/`, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+        params: {
+          username,
+        },
+      });
+      return response.data.items;
+    } catch (error) {
+      throw error;
+    }
+  };
+
   postItem = async (item: Item, token: string) => {
     try {
       const response = await axios.post(`${this.base_url}/items/`, item, {

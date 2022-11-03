@@ -1,4 +1,4 @@
-import * as model from "../../models/user.model";
+import * as model from "../../models/user.repository";
 import jwt from "jsonwebtoken";
 import dotenv from "dotenv";
 import bcrypt from "bcrypt";

@@ -1,4 +1,4 @@
-import * as model from "../../models/item.model";
+import db from "../../models";
 
 /**
  * @route GET /api/items
@@ -8,7 +8,15 @@ import * as model from "../../models/item.model";
  * @returns {Promise<void>}
  */
 export const getItemsController = async (req: any, res: any): Promise<void> => {
-  const items = await model.getItems();
+  if (req.query.username) {
+    const username = req.query.username;
+    const items = await db.user.getItems(username);
+    return res.send({
+      items: items,
+      url: req.originalUrl,
+    });
+  }
+  const items = await db.item.getItems();
   res.send({
     items: items,
     url: req.originalUrl,
@@ -28,7 +36,7 @@ export const updateItemController = async (
 ): Promise<void> => {
   const id = req.params.id;
   const item = req.body;
-  const updatedItem = await model.updateItem(id, item);
+  const updatedItem = await db.item.updateItem(id, item);
   res.send({
     updatedItem: updatedItem,
     url: req.originalUrl,
@@ -47,7 +55,9 @@ export const createItemController = async (
   res: any
 ): Promise<void> => {
   const item = req.body;
-  const createdItem = await model.createItem(item);
+  const { user } = req.user;
+  console.log(user.username);
+  const createdItem = await db.user.createItem(user.username, item);
   res.send({
     createdItem: createdItem,
     url: req.originalUrl,
@@ -66,7 +76,7 @@ export const deleteItemController = async (
   res: any
 ): Promise<void> => {
   const id = req.params.id;
-  const deletedItem = await model.deleteItem(id);
+  const deletedItem = await db.item.deleteItem(id);
   res.send({
     deletedItem: deletedItem,
     url: req.originalUrl,

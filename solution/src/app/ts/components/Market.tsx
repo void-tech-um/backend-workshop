@@ -2,6 +2,7 @@ import React, { FormEvent, useEffect, useState } from "react";
 import Cart from "./Cart";
 import ItemCard from "./ItemCard";
 import ItemFactory from "./ItemFactory";
+import Inventory from "./Inventory";
 import { useAuth } from "../utils/auth";
 
 import { Item } from "../utils/types";
@@ -75,12 +76,20 @@ const Market = () => {
           />
         ))}
       </div>
-      <h2 style={{ textAlign: "center", marginTop: "3rem" }}>Cart</h2>
-      <Cart
-        items={cart}
-        handleRemoveFromCart={handleRemoveFromCart}
-        handleCheckout={handleCheckout}
-      />
+      <div className="row">
+        <div className="col-6">
+          <h2 style={{ textAlign: "center", marginTop: "3rem" }}>Cart</h2>
+          <Cart
+            items={cart}
+            handleRemoveFromCart={handleRemoveFromCart}
+            handleCheckout={handleCheckout}
+          />
+        </div>
+        <div className="col-6">
+          <h2 style={{ textAlign: "center", marginTop: "3rem" }}>Inventory</h2>
+          <Inventory />
+        </div>
+      </div>
       <h2 style={{ textAlign: "center" }}>Sell an Item</h2>
       <ItemFactory handleAddItem={handleAddItem} />
       <button className="btn btn-danger" onClick={() => auth.logout()}>
