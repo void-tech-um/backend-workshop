@@ -8,9 +8,7 @@ const Register = () => {
   const [email, setEmail] = React.useState("");
   const [password, setPassword] = React.useState("");
   const [confirmPassword, setConfirmPassword] = React.useState("");
-  const location = useLocation();
   const navigate = useNavigate();
-  const from = location.state?.from?.pathname || "/";
   const auth = useAuth();
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
@@ -21,7 +19,7 @@ const Register = () => {
     }
     try {
       auth.signup(username, email, password, () => {
-        navigate(from, { replace: true });
+        navigate("/login", { replace: true });
       });
     } catch (e) {
       alert(e);

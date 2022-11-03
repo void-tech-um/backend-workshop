@@ -1,12 +1,16 @@
 import * as React from "react";
-import { useState, useEffect } from "react";
+import { useEffect } from "react";
 import { useAuth } from "../utils/auth";
 import Api from "../utils/api";
 import { Item } from "../utils/types";
 
+interface InventoryProps {
+  inventory: Item[];
+  setInventory: React.Dispatch<React.SetStateAction<Item[]>>;
+}
+
 // Display items owned by the user
-const Inventory = () => {
-  const [items, setItems] = useState<Item[]>([]);
+const Inventory = ({ inventory, setInventory }: InventoryProps) => {
   const auth = useAuth();
   const api = new Api();
 
@@ -16,22 +20,20 @@ const Inventory = () => {
         localStorage.getItem("token") as string,
         auth.user as string
       );
-      setItems(data);
+      setInventory(data);
     } catch (e) {
       alert(e);
     }
   };
 
   useEffect(() => {
-    const int = setInterval(fetchItems, 1000);
-
-    return () => clearInterval(int);
+    fetchItems();
   }, []);
 
   return (
     <div>
       <div className="row">
-        {items?.map((item: any) => (
+        {inventory.map((item: any) => (
           <div className="col-4" key={item.id}>
             <div className="card">
               <div className="card-body">

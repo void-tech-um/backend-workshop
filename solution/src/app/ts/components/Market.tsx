@@ -12,6 +12,7 @@ import Api from "../utils/api";
 const Market = () => {
   const [items, setItems] = useState<Item[]>([]);
   const [cart, setCart] = useState<Item[]>([]);
+  const [inventory, setInventory] = useState<Item[]>([]);
   const auth = useAuth();
 
   const token = localStorage.getItem("token");
@@ -45,6 +46,7 @@ const Market = () => {
     try {
       const newItem = await api.postItem(item, token as string);
       setItems((prevItems) => [...prevItems, newItem]);
+      setInventory((prevInventory) => [...prevInventory, newItem]);
     } catch (error) {
       console.log(error);
     }
@@ -65,6 +67,7 @@ const Market = () => {
   return (
     <div className="container">
       <h1 style={{ textAlign: "center" }}>Market</h1>
+      <h5 style={{ textAlign: "center" }}>Logged in as {auth.user}</h5>
       <div className="row mx-auto">
         {items.map((item) => (
           <ItemCard
@@ -87,7 +90,7 @@ const Market = () => {
         </div>
         <div className="col-6">
           <h2 style={{ textAlign: "center", marginTop: "3rem" }}>Inventory</h2>
-          <Inventory />
+          <Inventory inventory={inventory} setInventory={setInventory} />
         </div>
       </div>
       <h2 style={{ textAlign: "center" }}>Sell an Item</h2>
