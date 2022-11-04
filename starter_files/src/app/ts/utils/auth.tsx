@@ -61,8 +61,7 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
   ) => {
     try {
       const data = await api.signup(username, email, password);
-      setUser(data.createdUser.username);
-      localStorage.setItem("token", data.token);
+      alert("Signup successful!");
       redirect();
     } catch (e) {
       alert(e);

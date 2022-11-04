@@ -5,10 +5,6 @@ import {
   InferAttributes,
   InferCreationAttributes,
   CreationOptional,
-  HasManyGetAssociationsMixin,
-  HasManyAddAssociationMixin,
-  HasManyRemoveAssociationMixin,
-  HasManyCreateAssociationMixin,
   NonAttribute,
   Association,
   ForeignKey,
@@ -25,11 +21,6 @@ export class User extends Model<
 
   declare createdAt: CreationOptional<Date>;
   declare updatedAt: CreationOptional<Date>;
-
-  declare getItems: HasManyGetAssociationsMixin<Item>;
-  declare addItem: HasManyAddAssociationMixin<Item, "id">;
-  declare removeItem: HasManyRemoveAssociationMixin<Item, "id">;
-  declare createItem: HasManyCreateAssociationMixin<Item>;
 
   get userName(): NonAttribute<string> {
     return this.username;

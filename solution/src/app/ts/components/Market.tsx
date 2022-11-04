@@ -58,6 +58,9 @@ const Market = () => {
         await api.deleteItem(item.id, token as string);
       });
       setItems((prevItems) => prevItems.filter((item) => !cart.includes(item)));
+      setInventory((prevInventory) =>
+        prevInventory.filter((inventoryItem) => !cart.includes(inventoryItem))
+      );
       setCart([]);
     } catch (error) {
       console.log(error);

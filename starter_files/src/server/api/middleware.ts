@@ -26,5 +26,5 @@ export const hashPassword = async (
  */
 export const authenticateToken = (req: any, res: any, next: any): any => {
   /** @todo Implement the function */
-  next();
+  next(); // Move this to the correct place
 };
