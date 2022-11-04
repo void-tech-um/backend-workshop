@@ -117,7 +117,7 @@ $ psql --version # Check that PostgreSQL is installed
 psql (PostgreSQL) 13.4 # Your version may be different
 ```
 
-To make all of our lives easier, we are going to run the database in a Docker container. This pretty much saves me the headache of headache of having to fix any errors you might run into when setting up the database (it can get quite complicated).
+To make all of our lives easier, we are going to run the database in a Docker container. This pretty much saves me the headache of having to fix any errors you might run into when setting up the database (it can get quite complicated if you are running Linux/WSL).
 
 Docker is a containerization tool that allows you to run applications in a containerized environment. You can think of it as a virtual machine, but it is much lighter weight and more efficient. You can read more about Docker [here](https://www.docker.com/resources/what-container).
 
