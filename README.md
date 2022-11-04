@@ -11,12 +11,12 @@ You need to have Node.js and npm installed on your machine. You can download Nod
 ### Running the application
 
 To get started, install the dependencies.
-```console
+```bash
 $ ./install solution
 ```
 
 Then create an `.env` file in the root of the project. The `.env` file should contain the following:
-```console
+```bash
 # Database Config Environment Variables
 DB_NAME=<database_name>
 DB_USER=<database_user>
@@ -33,14 +33,14 @@ SERVER_PORT=3001
 
 Create a docker container for the database or resume an existing one.
 
-```console
+```bash
 # Run this only if you don't have a database container set up
 $ docker run --name backend-workshop-db -e POSTGRES_PASSWORD=void -p 5432:5432 -d postgres
 ```
 
 Then, start the server.
 
-```console
+```bash
 # cd solution
 $ npm start
 ```
