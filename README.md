@@ -7,7 +7,6 @@ This repository is a work in progress.
 
 ### Prerequisites
 You need to have Node.js and npm installed on your machine. You can download Node.js from [here](https://nodejs.org/en/download/).
-You also need to have PostgreSQL installed on your machine. You can download PostgreSQL from [here](https://www.postgresql.org/download/).
 
 ### Running the application
 
@@ -28,14 +27,23 @@ DB_HOST=localhost
 TOKEN_SECRET=<token_secret>
 
 # The port on which the application will run
-PORT=8000
+PORT=3000
+SERVER_PORT=3001
+```
+
+Create a docker container for the database or resume an existing one.
+
+```console
+# Run this only if you don't have a database container set up
+$ docker run --name backend-workshop-db -e POSTGRES_PASSWORD=void -p 5432:5432 -d postgres
 ```
 
 Then, start the server.
+
 ```console
 # cd solution
 $ npm start
 ```
 
-This will start the server on port 8000. You can then access the API at `http://localhost:8000/api`.
+This will start the frontend and backend servers. The frontend server will be running on port 3000 and the backend server will be running on port 3001. You can access the frontend application by going to `http://localhost:3000`.
 
