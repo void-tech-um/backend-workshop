@@ -16,7 +16,7 @@ $ ./install solution
 ```
 
 Then create an `.env` file in the root of the project. The `.env` file should contain the following:
-```bash
+```env
 # Database Config Environment Variables
 DB_NAME=<database_name>
 DB_USER=<database_user>
