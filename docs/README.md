@@ -169,8 +169,6 @@ $ npm start
 
 You can now visit http://localhost:3000 to see the app running; you will see a login page but it won't actually work. You can also visit http://localhost:3001/api to see the API's index route which returns the available routes.
 
-##
-
 ## Backend Development Overview
 Backend development is the process of building the server-side of an application. This includes the API that the frontend will use to communicate with the server, and the database that will store the data for the application. The backend is responsible for handling all of the business logic for the application, and the frontend is responsible for displaying the data to the user.
 
