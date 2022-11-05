@@ -6,7 +6,7 @@ layout: spec
 Welcome to the backend development guide for the VOID Tech Org at the University of Michigan. Backend development is a broad term that encompasses a lot of different technologies. This guide will focus on the technologies that we recommend using for your projects, since we have experience with them and can help you out if you run into any issues.
 
 ## Disclaimer
-This guide is not meant to be a comprehensive guide to each of the backend technologies we are going to mention, rather a quick introduction that will help you get started on your projects. You can use this guide as a reference, but you should also look at official documentation for more information. Check out the [Lean More](#resources) section for links to the official documentation.
+This guide is not meant to be a comprehensive guide to each of the backend technologies we are going to mention, rather a quick introduction that will help you get started on your projects. You can use this guide as a reference, but you should also look at official documentation for more information. Check out the [Resources](#resources) section for links to the official documentation.
 
 ## Prerequisites
 This guide assumes you have basic programming fundamentals, such as variables, functions, loops, and classes. You should also have some familiarity with TypeScript. If you are not familiar with TypeScript feel free to go over our [TypeScript Overview](https://voidtechmichigan.org/react-workshop/#typescript-overview), or you can check out the [TypeScript Handbook](https://www.typescriptlang.org/docs/handbook/intro.html) for a quick introduction.
@@ -689,7 +689,7 @@ const generateAccessToken = (user: any): string => {
 
 This function takes in a user and returns a JWT token. The token is created using the `jwt.sign` method. The first parameter is the payload. The payload is the data that we want to store in the token. In this case, we are storing the user's username. The second parameter is the secret key. The third parameter is the options. We are setting the token to expire in 15 minutes. This means that after 15 minutes, the token will no longer be valid.
 
-## Password hashing
+## Password Hashing
 
 The worst thing that can happen to a user is for their password to be compromised. This is why we need to hash our passwords. Hashing is a one-way function. This means that we can hash a password, but we cannot unhash it. This means that if someone gets a hold of our database, they will not be able to get the user's password.
 
