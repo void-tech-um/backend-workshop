@@ -440,7 +440,7 @@ There is other stuff here like `CreationOptional` which sets that attribute to b
 
 Now that we have our database models, we can start creating our database repositories. The database repositories are responsible for handling the database operations. We are going to have two database repositories. The first database repository is for the `User` model, and the second database repository is for the `Item` model. Each of our files has a series of methods that will handle the database operations. I will go over one method from each file as an example.
 
-Let's look inside the `server/model/user.repositoruy.ts` file.
+Let's look inside the `server/model/user.repository.ts` file.
 
 ```typescript
 /**
