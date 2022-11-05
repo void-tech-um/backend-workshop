@@ -572,7 +572,7 @@ Finally we export the router for our main router to use.
 
 In case you are wondering what `authenticateToken` is, we will look at that later.
 
-### Controller methods
+### Controller Methods
 
 Now that we have our routes set up, we can start creating our controller methods. The controller methods are responsible for handling the requests and responses.
 
